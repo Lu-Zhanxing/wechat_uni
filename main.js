@@ -2,6 +2,19 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
+import {$http} from '@escook/request-miniprogram'
+
+// 请求相关
+uni.$http = $http
+$http.baseUrl = "https://api-hmugo-web.itheima.net"
+$http.beforeRequest = function(options){
+  uni.showLoading({
+    title:'数据加载中...'
+  })
+}
+$http.afterRequest = function(){
+  uni.hideLoading()
+}
 
 Vue.config.productionTip = false
 
